@@ -1,0 +1,73 @@
+@{
+    Layout = null;
+    var today = DateTime.Now;
+    var isWeekend = today.DayOfWeek == DayOfWeek.Saturday || today.DayOfWeek == DayOfWeek.Sunday;
+    
+    string dayName = today.DayOfWeek switch {
+        DayOfWeek.Monday => "Thứ Hai",
+        DayOfWeek.Tuesday => "Thứ Ba",
+        DayOfWeek.Wednesday => "Thứ Tư",
+        DayOfWeek.Thursday => "Thứ Năm",
+        DayOfWeek.Friday => "Thứ Sáu",
+        DayOfWeek.Saturday => "Thứ Bảy",
+        DayOfWeek.Sunday => "Chủ Nhật",
+        _ => ""
+    };
+}
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <title>Weekend Check - ASP.NET Core MVC (.NET 10)</title>
+    <style>
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background-color: #f8f9fa; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+            margin: 0; 
+        }
+        .card { 
+            background: white; 
+            padding: 40px; 
+            border-radius: 12px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
+            text-align: center; 
+            max-width: 500px;
+            width: 100%;
+        }
+        h2 { color: #343a40; }
+        .weekend { color: #28a745; font-size: 20px; font-weight: bold; margin-top: 20px; }
+        .weekday { color: #007bff; font-size: 20px; font-weight: bold; margin-top: 20px; }
+        .date-info { font-size: 18px; color: #6c757d; }
+        hr { border: 0; height: 1px; background: #e9ecef; margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Kiểm tra ngày cuối tuần (.NET 10)</h2>
+        <p class="date-info">Xin chào <strong>Quang Huy</strong>!</p>
+        <p class="date-info">Hôm nay là: <strong>@dayName, ngày @today.ToString("dd/MM/yyyy")</strong></p>
+        
+        <hr />
+        
+        @if (isWeekend)
+        {
+            <div class="weekend">
+                🎉 Hôm nay là cuối tuần!<br/>
+                Chúc bạn có thời gian nghỉ ngơi thư giãn.
+            </div>
+        }
+        else
+        {
+            <div class="weekday">
+                💻 Hôm nay là ngày trong tuần.<br/>
+               
+            </div>
+        }
+    </div>
+</body>
+</html>
